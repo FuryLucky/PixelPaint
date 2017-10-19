@@ -8,7 +8,7 @@
 <!--=============================================================================================================-->
 <!--===================================================== HTML ==================================================-->
 <!--=============================================================================================================-->
-<div class="side_bar">
+<div class="side_bar" style="background-color: white">
     <div class="palette" onclick="color = 1" style="background-color: red"></div>
     <div class="palette" onclick="color = 2" style="background-color: orange"></div>
     <div class="palette" onclick="color = 3" style="background-color: yellow"></div>
@@ -23,6 +23,8 @@
 <!--===================================================== CSS ===================================================-->
 <!--=============================================================================================================-->
 <style type="text/css">
+
+body{background-color: black;}
 
 .side_bar{
   position: absolute;
@@ -55,7 +57,7 @@ table tr td{
 /*table tr td:hover{
   background-color: rgba(1,1,1,0.2);
 }*/
-td:active{
+td:onclick{
     background-color:black;
 }
 
@@ -89,7 +91,7 @@ td:active{
     },
 
     genTab: function(){   //  CREATION DU PLATEAU  
-        var $table = $('<table></table>');
+        var $table = $('<table style="background-color: white"></table>');
         for(var x = 0; x < this.tab.x; x++){
           var $line = $('<tr></tr>');
           $table.append($line);
