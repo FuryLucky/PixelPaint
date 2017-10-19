@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Paint</title>
+</head>
+<body>
+<!--=============================================================================================================-->
+<!--===================================================== HTML ==================================================-->
+<!--=============================================================================================================-->
+<div class="side_bar">
+    <div class="palette" onclick="color = 1">rouge</div>
+    <div class="palette" onclick="color = 2">bleu</div>
+    <div class="palette" onclick="color = 3">vert</div>
+    <div class="palette" onclick="color = 4">orange</div>
+    <div class="palette" onclick="color = 5">jaune</div>
+</div>
+<div class="tabContainer"></div>
+<!--=============================================================================================================-->
+<!--===================================================== CSS ===================================================-->
+<!--=============================================================================================================-->
+<style type="text/css">
+
+.side_bar{
+  position: absolute;
+  left: 220px;
+  border: 1px solid black;
+  width: 80px;
+  height: 640px;
+}
+.palette{
+  border: 1px solid black;
+  margin: 3px 3px;
+}
+.palette:hover{
+  border: 3px solid black;
+  margin: 1px 1px;
+}
+table{
+  border-collapse: collapse;
+  border: 1px solid black;
+  margin: 1% 24%;
+
+}
+table tr td{
+  width: 30px;
+  height: 30px;
+}
+
+.active{
+  background-color: rgba(1,1,1,0.2);
+}
+
+
+</style>
+<!--=============================================================================================================-->
+<!--================================================= JAVA SCRIPT ===============================================-->
+<!--=============================================================================================================-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+ 
+    var color = 0;
+    var engine = {
+      pos: {x:0, y:0},
+      pos2: {x:7, y:7},
+      tab: {
+        x: 20, 
+        y: 20, 
+        container: $('.tabContainer'),
+      },
+    _init: function(){   // INITIALISATION DES FONCTION 
+        this.genTab();
+        this.listener();
+        this.setCell();
+        this.add_color();
+    },
+    genTab: function(){   //  CREATION DU PLATEAU  
+        var $table = $('<table></table>');
+        for(var x = 0; x < this.tab.x; x++){
+          var $line = $('<tr></tr>');
+          $table.append($line);
+          for(var y = 0; y < this.tab.y; y++){
+            $line.append('<td class="'+x+'-'+y+'"></td>');
+          }
+        }
+        this.tab.container.append($table);
+    },
+    listener: function(){
+        var me = this;
+        $(document).keydown(function(e){   // DEPLACEMENT
+            if (e.keyCode >= 32 && e.keyCode <= 40) {
+              var pos = [me.pos.x, me.pos.y]; 
+               switch(e.keyCode){
+                  case 37: pos[1]--; break; // left
+                  case 38: pos[0]--; break; // up
+                  case 39: pos[1]++; break; // right
+                  case 40: pos[0]++; break; // down
+                  case 32: engine.add_color(); break;
+               }
+              me.move(pos[0], pos[1]);
+            };
+        });                                                                  
+    },
+    move: function(x,y){   // DEPLACEMENT 
+        if( x > this.tab.x-1 || x < 0 || y < 0 || y > this.tab.y-1){
+          return;
+        }else{
+          this.pos.x = x;
+          this.pos.y = y;
+        }
+        this.setCell();
+    },
+    setCell: function(){ 
+        $('table tr td.active').removeClass('active');
+        $('.'+this.pos.x+'-'+this.pos.y).addClass('active');
+        $('active').attr('active');
+    },
+    add_color: function(){
+      switch(color){
+        case 0: $('.'+this.pos.x+'-'+this.pos.y).attr('style','background-color : white'); break;
+        case 1: $('.'+this.pos.x+'-'+this.pos.y).attr('style','background-color : red'); break;
+        case 2: $('.'+this.pos.x+'-'+this.pos.y).attr('style','background-color : blue'); break;
+        case 3: $('.'+this.pos.x+'-'+this.pos.y).attr('style','background-color : green'); break;
+        case 4: $('.'+this.pos.x+'-'+this.pos.y).attr('style','background-color : orange'); break;
+        case 5: $('.'+this.pos.x+'-'+this.pos.y).attr('style','background-color : yellow'); break;
+      }
+    },
+  }
+    engine._init();    
+
+
+    
+
+</script>
+
+</body>
+</html>
