@@ -9,12 +9,13 @@
 <!--===================================================== HTML ==================================================-->
 <!--=============================================================================================================-->
 <div class="side_bar" style="background-color: white">
-    <div class="palette" onclick="color = 1" style="background-color: red"></div>
-    <div class="palette" onclick="color = 2" style="background-color: orange"></div>
-    <div class="palette" onclick="color = 3" style="background-color: yellow"></div>
-    <div class="palette" onclick="color = 4" style="background-color: green"></div>
-    <div class="palette" onclick="color = 5" style="background-color: blue"></div>
-    <div class="palette" onclick="color = 6" style="background-color: purple"></div>
+    <div class="palette" style="background-image: url(http://www.actunet.org/images/paint.png); background-size: cover;"></div>
+    <div class="palette" onclick="color = 1" style="background-color: red" script="$('table tr td:onclick').attr('style','background-color : red');"></div>
+    <div class="palette" onclick="color = 2" style="background-color: orange" script="$('table tr td:onclick').attr('style','background-color : orange');"></div>
+    <div class="palette" onclick="color = 3" style="background-color: yellow" script="$('table tr td:onclick').attr('style','background-color : yellow');"></div>
+    <div class="palette" onclick="color = 4" style="background-color: green" script="$('table tr td:onclick').attr('style','background-color : green');"></div>
+    <div class="palette" onclick="color = 5" style="background-color: blue" script="$('table tr td:onclick').attr('style','background-color : blue');"></div>
+    <div class="palette" onclick="color = 6" style="background-color: purple" script="$('table tr td:onclick').attr('style','background-color : purple');"></div>
     <br/><br/><br/><br/><br/><br/><br/><br/>
     <div class="palette" onclick="color = 0" style="background-image: url(http://fr.seaicons.com/wp-content/uploads/2015/10/Eraser-icon.png); background-size: cover;"></div>
 </div>
@@ -54,11 +55,11 @@ table tr td{
   width: 30px;
   height: 30px;
 }
-/*table tr td:hover{
+table tr td:hover{
   background-color: rgba(1,1,1,0.2);
-}*/
-td:onclick{
-    background-color:black;
+}
+table tr td:onclick{        /*   <----------------------------------  MARCHE PAS*/
+    background-color:none;
 }
 
 .active{
